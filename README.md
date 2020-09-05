@@ -77,7 +77,7 @@ We present mortality effects in terms of the change to the distribution of death
 
 We disaggregate health effects into the outcomes observed for cancers, cardiovascular, respiratory, mental health, kidney disease, type II diabetes, other adult diseases, and diseases that are less common due to smoking (i.e. for which smoking has protective effects). In our default reporting of results we do not assign quality adjusted life years (QALYs) a financial value in £. We discount costs and QALYs by 3.5\%.      
 
-### Timeframes of reporting {#timeframes}
+### Timeframes of reporting
 The time-trend nature of our analysis means that we can report findings in terms of graphs that show the annual effect-size and the annual cumulative effect size. For the purposes of clear communication of findings (and results tables) of policy effects, we also report these effects at key time-points: 1, 5 and 10 years after policy implementation, and the lifetime effect or "full effect" that we define as the year when someone aged 12 in the first cohort exposed to the policy reached the oldest age in our model (i.e. 89 - 12 = 77 years from baseline, so to assess a policy introduced in 2016 would require a population project to 2093).    
 
 ## Distributional effects
