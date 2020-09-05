@@ -1,10 +1,14 @@
 
-# The aim of this code is to run the simulation of smoking prevalence
+# The aim of this code is to run the simulation of a policy effect on smoking prevalence
+
+# This is the example used in the first version of the STPM technical report
 
 library(data.table)
 library(stapmr)
 library(tobalcepi)
 
+
+#####################################################
 # Load data ----------------
 
 # Load the prepared data on tobacco consumption
@@ -18,6 +22,13 @@ relapse_data <- readRDS("intermediate_data/relapse_data.rds")
 # Mortality data
 mort_data <- readRDS("intermediate_data/tob_mort_data_cause.rds")
 
+# Morbidity data
+morb_data <- readRDS("intermediate_data/morb_rates.rds")
+
+
+#####################################################
+# Prepare policy effect ----------------
+
 # Construct the variables by which the policy effect could vary
 effect_data <- data.frame(expand.grid(
   sex = c("Male", "Female"),
@@ -28,39 +39,41 @@ effect_data <- data.frame(expand.grid(
 setDT(effect_data)
 
 # Set the policy effect
-policy_effect_period <- 2013:2014
+k_2014 <- -0.05
+k_2015 <- -0.1
 
 effect_data[ , rel_change := 1]
-effect_data[year %in% policy_effect_period, rel_change := 0.95]
+effect_data[year == 2014, rel_change := 1 + k_2014]
+effect_data[year == 2015, rel_change := 1 + k_2015]
 
 
+#####################################################
 # Run simulation ----------------
 
-
-testrun <- SmokeSim_prevadj(
+testrun <- SmokeSim(
   survey_data = survey_data,
   init_data = init_data,
   quit_data = quit_data,
   relapse_data = relapse_data,
   mort_data = mort_data,
-  baseline_year = 2010,
-  baseline_sample_years = 2009:2011, # synth pop is drawn from 3 years
-  time_horizon = 2017,
+  morb_data = morb_data,
+  baseline_year = 2002,
+  baseline_sample_years = 2001:2003,
+  time_horizon = 2050,
+  trend_limit_morb = 2016,
+  trend_limit_mort = 2016,
+  trend_limit_smoke = 2016,
   pop_size = 1e5, # 200,000 people is about the minimum to reduce noise for a single run
-  pop_data = stapmr::pop_counts,
   two_arms = TRUE,
-  policy_effect_period = policy_effect_period,
+  policy_effect_period = 2014:2015,
   rel_change_data = effect_data,
-  seed_sim = NULL,
-  pop_seed = 1,
-  iter = NULL,
   write_outputs = "output",
   label = "policytest"
 )
 
 # Check the "output" folder for the saved model outputs
 # these are forecast individual-level data on smoking
-# and forecast mortality rates
+# and forecast mortality and morbidity rates
 
 
 

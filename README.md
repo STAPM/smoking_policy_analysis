@@ -21,10 +21,11 @@ The **inputs** are:
 
 1.  A population data sample with details of tobacco consumption from the Health Survey for England. These data are for ages 11--89 years and years 2001--2016. The data have had missing values for key socio-economic variables imputed.   
 2.  Smoking transition probabilities - three files covering smoking initiation, quitting and relapse.   
-3.  Cause-specific rates of mortality that have been forecast into the future.  
+3.  Cause-specific rates of mortality and mortality.  
+4.  Estimates of the cost of hospital care and health state utility values.  
 
 ## Model processes
-The model is run by the function `stapmr::SmokeSim_forecast()`. This function can recapitulate the past trends in smoking observed in the HSE, allowing validation of the model predictions against the observed data. It also allows the forecasting of future smoking, based on our forecasts of the continuing trends in mortality and in the smoking transition probabilities.    
+The model is run by the function `stapmr::SmokeSim()`. This function similates smoking trends and then adjusts them for the effect of a policy or intervention.    
 
 The smoking model is an individual-based simulation of the population dynamics of smoking (see the [mathematical model framework](https://stapm.gitlab.io/stapmr/articles/smoking_model_maths.html)). The model simulates individual movements among current, former and never smoking states as they age. The simulation proceeds in one year time steps. At each time step, a sample of new individuals are added to the simulated population at the youngest age of 11 years. In each year of the simulation, **survival** is simulated by assigning each individual a relative risk for each disease based on their smoking state; individuals are then removed from the population according to their probabilities of death from each disease, accounting for differential risk by smoking status. **Behaviour change** is simulated in terms of individual transitions among smoking states, and time since quitting for former smokers is updated; each individual is assigned the smoking transition probability that matches their age, sex and IMD quintile for the year being simulated. **Demographic change** is simulated by ageing individuals by one year, and adding new individuals at the youngest age; the number of individuals added at the youngest age in each year is proportional to either the observed or [projected population sizes](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationprojections) (based on the primary population projection) for that age and year.    
 
@@ -80,11 +81,10 @@ We disaggregate health effects into the outcomes observed for cancers, cardiovas
 The time-trend nature of our analysis means that we can report findings in terms of graphs that show the annual effect-size and the annual cumulative effect size. For the purposes of clear communication of findings (and results tables) of policy effects, we also report these effects at key time-points: 1, 5 and 10 years after policy implementation, and the lifetime effect or "full effect" that we define as the year when someone aged 12 in the first cohort exposed to the policy reached the oldest age in our model (i.e. $89 - 12 = 77$ years from baseline, so to assess a policy introduced in 2016 would require a population project to 2093).    
 
 ## Distributional effects
-The primary stratification variables in STPM are age-group (which for our default reporting we define as 12-19, 20-29, 30-49, 50-69, 70-89), sex and IMD quintile. In our default reporting, we investigate distributional effects across two sets of 10 subgroups: combinations of our default age-groups and sex; combinations of IMD quintiles and sex.  
+The primary stratification variables in STPM are age-group (which in our current default reporting we define as 11-19, 20-29, 30-49, 50-69, 70-89), sex and IMD quintile. In our default reporting, we investigate distributional effects across two sets of 10 subgroups: combinations of our default age-groups and sex; combinations of IMD quintiles and sex.  
 
 It is important to bear in mind that distributional effects are likely to change over time after implementation of the policy e.g. as delayed effects on diseases emerge. Our primary reporting of distributional effects is based on the UK's current smokefree target of 2030, but where appropriate we report the distributional effects at different time points.  
 
-Summaries of the socio-economic inequalities in policy effects are an important communication tool. There are a range of metrics to choose from when it comes to computing these summaries. Currently in STPM, we report absolute inequality across IMD quintiles in terms of the Slope Index of Inequality (SII), and relative inequality in terms the Relative Index of Inequality (RII), which is derived from the SII.    
 
 
 
