@@ -53,7 +53,7 @@ HSUVs are estimated using the [EQ-5D](https://euroqol.org/eq-5d-instruments/), a
 ## Modelling policy effects on costs and QALYs
 To estimate how a policy or intervention changes the distribution of individuals among health states, STPM simulates a version of the population in which smoking has changed due to the policy or intervention (the 'treatment' arm) and a version of the population in which smoking is unaffected (the 'control' or 'business-as-usual' arm). To minimise the variance in the comparison, we keep the random components of the simulation the same between the control and treatment arms (by using the same random seeds).      
 
-Changes to the distribution of individuals among health states are then estimated based on the **potential impact fraction** ($PIF$), which we take to represent the proportion of people who move from each smoking-related health state to the "no smoking-related diseases" health state. The $PIF$ summarises the difference between the treatment and control arms in the relative risks of smoking-related disease (that differ between arms due to the difference in the distribution of individuals among smoking states).
+Changes to the distribution of individuals among health states are then estimated based on the **potential impact fraction** (PIF), which we take to represent the proportion of people who move from each smoking-related health state to the "no smoking-related diseases" health state. The PIF summarises the difference between the treatment and control arms in the relative risks of smoking-related disease (that differ between arms due to the difference in the distribution of individuals among smoking states).
 
 ## Distributional effects
 Population size, the distribution of individuals among smoking states and their distribution among health states are all stratified by period, age, sex and IMD quintile. The relative risks of smoking-related disease associated with each smoking state are generally held constant, except for Ischaemic Heart Disease and Stroke, for which the best available evidence was stratified by age and sex. The paramaters that we use to estimate the change to costs and QALYs (number and unit costs of hospital admissions, and health state utility values) are held constant over time in order to focus on the effects of changes to smoking, and to express results in terms of a particular cost-year. Our health state utility values are currently stratified by age and sex but not IMD quintile, but this could be addressed in future versions of STPM.
@@ -63,22 +63,22 @@ There are are range of outputs of the code in this repo that show the effects on
 ### Population trajectories of smoking behaviour
 
 - The proportion of the population who currently smoke (i.e. smoking prevalence) and by extension the number of smokers.   
-- The proportion of ever-smokers at ages 12--89, i.e. considering all ages in our simulation rather than just particular index ages.  
-- Quit ratios at ages 12--89, which are the number of former smokers divided by the number of ever smokers, and indicate the extent to which everybody who started to smoke has now quit.   
+- The proportion of ever-smokers, i.e. considering all ages in our simulation rather than just particular index ages.  
+- Quit ratios, which are the number of former smokers divided by the number of ever smokers, and indicate the extent to which everybody who started to smoke has now quit.   
 
 ### Mortality
 We present mortality effects in terms of the change to the distribution of deaths among causes and the corresponding changes to the remaining years of life lost to death.    
 
 ### Health and economic effects
 
-- Years of life lived, with and without adjusting each year of life for its estimated utility (see Section \@ref(utilitydata)).           
+- Years of life lived, with and without adjusting each year of life for its estimated utility.           
 
-- The prevalence of smoking related diseases (in terms of the number of person-specific hospitalisations), number of hospital admissions, and the cost of hospital admissions to the NHS (see Section \@ref(hesdata)).    
+- The prevalence of smoking related diseases (in terms of the number of person-specific hospitalisations), number of hospital admissions, and the cost of hospital admissions to the NHS.    
 
 We disaggregate health effects into the outcomes observed for cancers, cardiovascular, respiratory, mental health, kidney disease, type II diabetes, other adult diseases, and diseases that are less common due to smoking (i.e. for which smoking has protective effects). In our default reporting of results we do not assign quality adjusted life years (QALYs) a financial value in £. We discount costs and QALYs by 3.5\%.      
 
 ### Timeframes of reporting {#timeframes}
-The time-trend nature of our analysis means that we can report findings in terms of graphs that show the annual effect-size and the annual cumulative effect size. For the purposes of clear communication of findings (and results tables) of policy effects, we also report these effects at key time-points: 1, 5 and 10 years after policy implementation, and the lifetime effect or "full effect" that we define as the year when someone aged 12 in the first cohort exposed to the policy reached the oldest age in our model (i.e. $89 - 12 = 77$ years from baseline, so to assess a policy introduced in 2016 would require a population project to 2093).    
+The time-trend nature of our analysis means that we can report findings in terms of graphs that show the annual effect-size and the annual cumulative effect size. For the purposes of clear communication of findings (and results tables) of policy effects, we also report these effects at key time-points: 1, 5 and 10 years after policy implementation, and the lifetime effect or "full effect" that we define as the year when someone aged 12 in the first cohort exposed to the policy reached the oldest age in our model (i.e. 89 - 12 = 77 years from baseline, so to assess a policy introduced in 2016 would require a population project to 2093).    
 
 ## Distributional effects
 The primary stratification variables in STPM are age-group (which in our current default reporting we define as 11-19, 20-29, 30-49, 50-69, 70-89), sex and IMD quintile. In our default reporting, we investigate distributional effects across two sets of 10 subgroups: combinations of our default age-groups and sex; combinations of IMD quintiles and sex.  
